@@ -1,9 +1,12 @@
 package rw.medicine.stock.service;
 
 import org.springframework.stereotype.Service;
+
+import rw.medicine.stock.domain.OrderStatus;
 import rw.medicine.stock.domain.PurchaseOrder;
 import rw.medicine.stock.repository.PurchaseOrderRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -35,5 +38,13 @@ public class PurchaseOrderService {
         }
         purchaseOrderRepository.deleteById(id);
         return "Purchase order deleted successfully";
+    }
+    
+    public List<PurchaseOrder> findByStatus(OrderStatus status) {
+        return  purchaseOrderRepository.findByStatusOrderByOrderDateAsc(status);
+    }
+
+    public List<PurchaseOrder> findBetween(LocalDate start, LocalDate end) {
+        return purchaseOrderRepository.findByOrderDateBetweenOrderByOrderDateAsc(start, end);
     }
 }

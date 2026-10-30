@@ -3,9 +3,12 @@ package rw.medicine.stock.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import rw.medicine.stock.domain.OrderStatus;
 import rw.medicine.stock.domain.PurchaseOrder;
 import rw.medicine.stock.service.PurchaseOrderService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -46,6 +49,18 @@ public class PurchaseOrderController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
         }
         return ResponseEntity.ok(message);
+    }
+
+    @GetMapping ("/by-status")
+    public List<PurchaseOrder> byStatus(@RequestParam OrderStatus status) {
+        return purchaseOrderService.findByStatus(status);
+
+    }
+    @GetMapping("/between")
+    public List<PurchaseOrder> between(@RequestParam String start, @RequestParam String end) {
+        LocalDate startDate = LocalDate.parse(start);
+        LocalDate enDate = LocalDate.parse(end);
+        return purchaseOrderService.findBetween(startDate, enDate);
     }
 
     

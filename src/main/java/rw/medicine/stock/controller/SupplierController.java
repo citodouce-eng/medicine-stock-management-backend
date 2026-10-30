@@ -49,4 +49,9 @@ public class SupplierController {
         }
         return ResponseEntity.ok(message);
     }
+
+    @GetMapping("/by-company-name")
+    public List<Supplier> byCompanyName(@RequestParam String companyName) {
+        return supplierService.findByCompanyName(companyName);
+    }
 }

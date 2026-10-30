@@ -35,5 +35,11 @@ public class SupplierService {
         }   
         supplierRepository.deleteById(id);
         return "Supplier deleted successfully";
+
+    }
+
+    public List<Supplier> findByCompanyName(String companyName) {
+        return supplierRepository.findByCompanyNameIgnoreCaseOrderByContactNameAsc(companyName);
+
     }
 }
