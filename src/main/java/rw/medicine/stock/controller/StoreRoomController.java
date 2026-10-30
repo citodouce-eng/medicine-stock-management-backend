@@ -47,5 +47,10 @@ public class StoreRoomController {
         }
         return ResponseEntity.ok(message);
     }
+
+    @GetMapping("/free")
+    public List<StoreRoom> free() {
+        return storeRoomService.findFreeStoreRooms();
+    }
     
 }

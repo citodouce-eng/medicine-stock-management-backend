@@ -48,4 +48,9 @@ public class MedicineClassController {
         }
         return ResponseEntity.ok(message);
     }
+
+    @GetMapping("/unused")
+    public List<MedicineClass> unused() {
+        return medicineClassService.findUnused();
+    }
 }

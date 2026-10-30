@@ -36,4 +36,8 @@ public class PharmacistService {
        pharmacistRepository.deleteById(id);
        return"Pharmacist deleted successfully";
     }
+
+    public List<Pharmacist> findByMedicineClassName(String name) {
+        return pharmacistRepository.findByMedicineClassName(name);
+    }
 }

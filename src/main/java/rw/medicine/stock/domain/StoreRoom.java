@@ -27,7 +27,7 @@ public class StoreRoom {
     public int getRoomNumber() {
         return roomNumber;
     }
-    public void setRoomNumber(int rooNumber) {
+    public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
     }
     public String getName() {

@@ -36,6 +36,10 @@ public class MedicineClassService {
         medicineClassRepository.deleteById(id);
         return "Medicine class deleted successfully";
         }
+
+        public List<MedicineClass> findUnused() {
+            return medicineClassRepository.findUnusedMedicineClasses();
+        }
     }
     
 

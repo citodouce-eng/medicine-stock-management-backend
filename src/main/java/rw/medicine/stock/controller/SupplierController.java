@@ -3,7 +3,10 @@ package rw.medicine.stock.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import rw.medicine.stock.domain.Pharmacist;
 import rw.medicine.stock.domain.Supplier;
+import rw.medicine.stock.service.PharmacistService;
 import rw.medicine.stock.service.SupplierService;
 
 import java.util.List;
@@ -16,9 +19,11 @@ import java.util.UUID;
 public class SupplierController {
     
     private final SupplierService supplierService;
+    private final PharmacistService pharmacistService;
 
-    public SupplierController(SupplierService supplierService) {
+    public SupplierController(SupplierService supplierService, PharmacistService pharmacistService) {
         this.supplierService = supplierService;
+        this.pharmacistService = pharmacistService;
     }
 
     @GetMapping 
@@ -53,5 +58,15 @@ public class SupplierController {
     @GetMapping("/by-company-name")
     public List<Supplier> byCompanyName(@RequestParam String companyName) {
         return supplierService.findByCompanyName(companyName);
+    }
+
+    @GetMapping("/of-pharmacist/{pharmacistId}")
+    public ResponseEntity<?> ofPharmacist(@PathVariable UUID pharmacistId) {
+        Optional<Pharmacist> pharmacist = pharmacistService.getById(pharmacistId);
+
+        if (pharmacist.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The pharmacist with that id does not exist");
+        }
+        return ResponseEntity.ok(supplierService.findSuppliersOfPharmacist(pharmacistId));
     }
 }

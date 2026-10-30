@@ -18,7 +18,7 @@ public class MedicineClass{
 
     @ManyToMany(mappedBy = "medicineClasses")
     @JsonIgnore 
-    private List<Pharmacist> pharmacits;
+    private List<Pharmacist> pharmacists;
     public MedicineClass() {}
 
     public UUID getId() {
@@ -34,12 +34,11 @@ public class MedicineClass{
     public void setName(String name) {
         this.name = name ;
     }
-    public List<Pharmacist> getPharmacists() 
-    {
-        return pharmacits;
+    public List<Pharmacist> getPharmacists() {
+        return pharmacists;
     }
     public void setPharmacists(List<Pharmacist> pharmacists) {
-    this.pharmacits = pharmacists;
+    this.pharmacists = pharmacists;
 }
 
 

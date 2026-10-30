@@ -48,4 +48,9 @@ public class PharmacistController {
         }
         return ResponseEntity.ok(message);
     }
+
+    @GetMapping("/by-medicine-class")
+    public List<Pharmacist> byMedicineClass(@RequestParam String name) {
+        return pharmacistService.findByMedicineClassName(name);
+    }
 }

@@ -42,4 +42,8 @@ public class SupplierService {
         return supplierRepository.findByCompanyNameIgnoreCaseOrderByContactNameAsc(companyName);
 
     }
+
+    public List<Supplier> findSuppliersOfPharmacist(UUID pharmacistId) {
+        return supplierRepository.findSuppliersOfPharmacist(pharmacistId);
+    }
 }
