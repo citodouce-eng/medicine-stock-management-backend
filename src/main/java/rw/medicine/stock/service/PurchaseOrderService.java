@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import rw.medicine.stock.domain.OrderStatus;
 import rw.medicine.stock.domain.PurchaseOrder;
 import rw.medicine.stock.repository.PurchaseOrderRepository;
+import rw.medicine.stock.repository.StockEntryRepository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,9 +16,11 @@ import java.util.UUID;
 public class PurchaseOrderService {
     
     private final PurchaseOrderRepository purchaseOrderRepository;
+    private final StockEntryRepository stockEntryRepository;
 
-    public PurchaseOrderService(PurchaseOrderRepository purchaseOrderRepository) {
+    public PurchaseOrderService(PurchaseOrderRepository purchaseOrderRepository, StockEntryRepository stockEntryRepository) {
         this.purchaseOrderRepository = purchaseOrderRepository;
+        this.stockEntryRepository = stockEntryRepository;
     }
 
     public List<PurchaseOrder> getAll() {
@@ -49,6 +52,9 @@ public class PurchaseOrderService {
         if (!purchaseOrderRepository.existsById(id)) {
             return "The purchase oerder with that id does nor exist";
 
+        }
+        if (stockEntryRepository.existsByPurchaseOrderId(id)) {
+            return "That purchase order has stock entries, delete them first";
         }
           purchaseOrderRepository.deleteById(id);
         return "Purchase order deleted successfully";

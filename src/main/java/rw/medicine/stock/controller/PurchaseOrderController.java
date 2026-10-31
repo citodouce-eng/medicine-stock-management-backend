@@ -65,6 +65,13 @@ public class PurchaseOrderController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable UUID id) {
         String message = purchaseOrderService.delete(id);
+
+        if (message.equals("Purchase order deletd successfully")) {
+            return ResponseEntity.ok(message);
+        }
+         if (message.equals("That purchase order has stock entries, delete them first")) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(message);
+         }
         if (message.contains("does not exist")) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
         }
