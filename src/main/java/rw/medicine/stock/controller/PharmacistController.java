@@ -53,4 +53,30 @@ public class PharmacistController {
     public List<Pharmacist> byMedicineClass(@RequestParam String name) {
         return pharmacistService.findByMedicineClassName(name);
     }
+
+    @PutMapping ("/{pharmacistId}/medicine-classes/{medicineClassId}")
+    public ResponseEntity<String> addMedicineClass(@PathVariable UUID pharmacistId, @PathVariable UUID medicineClassId) {
+        String message = pharmacistService.addMedicineClass(pharmacistId, medicineClassId);
+
+        if (message.equals("Medicine class added to the pharmacist")) {
+            return ResponseEntity.ok(message);
+        }
+        if (message.equals("The pharmacist already has that medicine class")) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(message);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+    }
+    @PatchMapping("/{pharmacistId}/store-room")
+    public ResponseEntity<String> changeStoreRoom(@PathVariable UUID pharmacistId, @RequestParam int roomNumber) {
+        String message = pharmacistService.changeStoreRoom(pharmacistId, roomNumber);
+
+        if (message.equals("Store room changed successfully")) {
+            return ResponseEntity.ok(message);
+        }
+        if(message.equals("That store room is taken by another pharmacist")) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(message);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+    
+    }
 }

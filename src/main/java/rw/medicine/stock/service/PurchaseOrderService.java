@@ -28,23 +28,63 @@ public class PurchaseOrderService {
         return purchaseOrderRepository.findById(id);
     }
 
-    public PurchaseOrder save(PurchaseOrder purchaseOrder) {
-        return purchaseOrderRepository.save(purchaseOrder); 
+    public String save(PurchaseOrder purchaseOrder){
+        if (purchaseOrder.getOrderDate() != null && purchaseOrder.getOrderDate().isBefore(LocalDate.now())){
+            return "Purchase order date cannot be in the past";
+        }
+        if (purchaseOrder.getPharmacist() != null) {
+            UUID pharmacistId = purchaseOrder.getPharmacist().getId();
+            LocalDate date = purchaseOrder.getOrderDate();
+            if (purchaseOrderRepository.existsByPharmacistIdAndOrderDateAndStatusNot(pharmacistId, date, OrderStatus.CANCELLED)) {
+                return "Pharmacist already has an open purchase order on that date";
+            }
+
+        }
+        purchaseOrder.setStatus(OrderStatus.DRAFTED);
+        purchaseOrderRepository.save(purchaseOrder);
+        return "Purchase order saved successfully";
     }
 
     public String delete(UUID id) {
-        if (!purchaseOrderRepository.existsById(id)){
-            return "The purchase order with that id does not exist" ;
+        if (!purchaseOrderRepository.existsById(id)) {
+            return "The purchase oerder with that id does nor exist";
+
         }
-        purchaseOrderRepository.deleteById(id);
+          purchaseOrderRepository.deleteById(id);
         return "Purchase order deleted successfully";
     }
-    
+
     public List<PurchaseOrder> findByStatus(OrderStatus status) {
-        return  purchaseOrderRepository.findByStatusOrderByOrderDateAsc(status);
+        return purchaseOrderRepository.findByStatusOrderByOrderDateAsc(status);
     }
 
     public List<PurchaseOrder> findBetween(LocalDate start, LocalDate end) {
         return purchaseOrderRepository.findByOrderDateBetweenOrderByOrderDateAsc(start, end);
     }
+
+    public String changeStatus(UUID id, OrderStatus newStatus) {
+         Optional<PurchaseOrder> opt = purchaseOrderRepository.findById(id);
+         if (opt.isEmpty()) {
+            return "The purchase order with that id does not exist";
+
+         }
+         PurchaseOrder po = opt.get();
+        OrderStatus current = po.getStatus();
+
+        boolean allowed = false;
+        if (current == OrderStatus.DRAFTED && (newStatus == OrderStatus.SENT || newStatus == OrderStatus.CANCELLED)) {
+            allowed = true;
+        }
+        if (current == OrderStatus.SENT && (newStatus == OrderStatus.RECEIVED || newStatus == OrderStatus.CANCELLED)) {
+            allowed = true;
+        }
+        if (!allowed) {
+            return "Cannot change status from " + current + " to " + newStatus;
+            
+        }
+        po.setStatus(newStatus);
+        purchaseOrderRepository.save(po);
+        return "Purchase order status updated successfully";    
+    }
+
 }

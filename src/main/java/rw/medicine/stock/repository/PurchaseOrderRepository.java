@@ -15,4 +15,6 @@ public interface PurchaseOrderRepository extends JpaRepository<PurchaseOrder, UU
 
     List<PurchaseOrder> findByOrderDateBetweenOrderByOrderDateAsc(LocalDate start, LocalDate end);
     
+     boolean existsByPharmacistIdAndOrderDateAndStatusNot(UUID pharmacistId, LocalDate orderDate, OrderStatus status);
+
 }

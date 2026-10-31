@@ -37,20 +37,6 @@ public class PurchaseOrderController {
         return ResponseEntity.ok(opt.get()) ;
     }
 
-    @PostMapping("/save")
-    public ResponseEntity<PurchaseOrder> save(@RequestBody PurchaseOrder purchaseOrder) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(purchaseOrderService.save(purchaseOrder));
-    }
-
-    @DeleteMapping ("/{id}")
-    public ResponseEntity<String> delete(@PathVariable UUID id) {
-        String message = purchaseOrderService.delete(id);
-        if (message.contains("does not exist")) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
-        }
-        return ResponseEntity.ok(message);
-    }
-
     @GetMapping ("/by-status")
     public List<PurchaseOrder> byStatus(@RequestParam OrderStatus status) {
         return purchaseOrderService.findByStatus(status);
@@ -59,8 +45,43 @@ public class PurchaseOrderController {
     @GetMapping("/between")
     public List<PurchaseOrder> between(@RequestParam String start, @RequestParam String end) {
         LocalDate startDate = LocalDate.parse(start);
-        LocalDate enDate = LocalDate.parse(end);
-        return purchaseOrderService.findBetween(startDate, enDate);
+        LocalDate endDate = LocalDate.parse(end);
+        return purchaseOrderService.findBetween(startDate, endDate);
+    
+    }
+    @PostMapping("/save")
+    public ResponseEntity<String> save(@RequestBody PurchaseOrder purchaseOrder) {
+        String message = purchaseOrderService.save(purchaseOrder);
+        if (message.equals("Purchase order saved successfully")) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(message);
+        }
+        if (message.equals("Pharmacist already has an open purchase order on that date")) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(message);
+        }
+        return ResponseEntity.badRequest().body(message);
+    
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable UUID id) {
+        String message = purchaseOrderService.delete(id);
+        if (message.contains("does not exist")) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+        }
+        return ResponseEntity.ok(message);
+    }
+
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<String> changeStatus(@PathVariable UUID id, @RequestParam OrderStatus status) {
+        String message = purchaseOrderService.changeStatus(id, status);
+        if (message.equals("Purchase order status updated successfully")) {
+            return ResponseEntity.ok(message);
+        }
+        if (message.equals("The purchase order with that id does not exist")) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+        }
+        return  ResponseEntity.badRequest().body(message);
+
     }
 
     
