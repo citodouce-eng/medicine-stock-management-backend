@@ -1,0 +1,1097 @@
+{
+  "info": {
+    "_postman_id": "5fba9063-8dc2-4d12-a18c-dcbf6c75b35a",
+    "name": "Medicine Stock Management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "56685840",
+    "_collection_link": "https://go.postman.co/collection/56685840-5fba9063-8dc2-4d12-a18c-dcbf6c75b35a?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "A1a - Create supplier",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"companyName\": \"PharmaPlus\",\r\n    \"contactName\": \"John Doe\",\r\n    \"supplierCode\": \"SUP001\",\r\n    \"phone\": \"0788123456\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8085/api/suppliers/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "suppliers",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A1b - Get all suppliers",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/suppliers",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "suppliers"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A1c - Get supplier by id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/suppliers/5670139c-8e9c-47a2-a640-e80eeb5d7804",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "suppliers",
+            "5670139c-8e9c-47a2-a640-e80eeb5d7804"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A1d - Get supplier by id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/suppliers/00000000-0000-0000-0000-000000000000",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "suppliers",
+            "00000000-0000-0000-0000-000000000000"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2a - Create pharmacist",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"firstName\": \"Test\",\r\n    \"lastName\": \"Pharmacist\",\r\n    \"licenceNumber\": \"LIC-TEST-99\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8085/api/pharmacists/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "pharmacists",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2b - Get all pharmacists",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/pharmacists",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "pharmacists"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A3a - Create medicine class",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Antifungals\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8085/api/medicine-classes/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "medicine-classes",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A3b - Get medicine classes",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/medicine-classes",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "medicine-classes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A4- Create purchase order",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"orderDate\": \"2026-12-25\",\r\n    \"orderReference\": \"PO-TEST-A\",\r\n    \"totalAmount\": 1500,\r\n    \"supplier\": {\r\n        \"id\": \"24f6234e-a094-4548-9d8a-d663b04fd146\"\r\n    },\r\n    \"pharmacist\": {\r\n        \"id\": \"84973f78-0c73-476f-8114-2ccd0942fddd\"\r\n    }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8085/api/purchase-orders/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "purchase-orders",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A5a- Create store room",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"roomNumber\": 5,\r\n    \"name\": \"Room Five\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8085/api/store-rooms/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "store-rooms",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A5b - Delete store room",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/purchase-orders/93d6f9ea-62c0-468a-881b-83dd681bee74",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "purchase-orders",
+            "93d6f9ea-62c0-468a-881b-83dd681bee74"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "B1 a- Suppliers by company name",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/suppliers/by-company-name?companyName=kipharma",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "suppliers",
+            "by-company-name"
+          ],
+          "query": [
+            {
+              "key": "companyName",
+              "value": "kipharma"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "B1b - Suppliers by company name (empty)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/suppliers/by-company-name?companyName=inconnu",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "suppliers",
+            "by-company-name"
+          ],
+          "query": [
+            {
+              "key": "companyName",
+              "value": "inconnu"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "B2a - Purchase orders by status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/purchase-orders/by-status?status=DRAFTED",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "purchase-orders",
+            "by-status"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "DRAFTED"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "B2b - Purchase orders by status (invalid)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/purchase-orders/by-status?status=INVALID",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "purchase-orders",
+            "by-status"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "INVALID"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "B3a- Purchase orders between dates",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/purchase-orders/between?start=2026-10-01&end=2026-10-31",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "purchase-orders",
+            "between"
+          ],
+          "query": [
+            {
+              "key": "start",
+              "value": "2026-10-01"
+            },
+            {
+              "key": "end",
+              "value": "2026-10-31"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "B3b - Purchase orders between dates (empty)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/purchase-orders/between?start=2026-01-01&end=2026-01-31",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "purchase-orders",
+            "between"
+          ],
+          "query": [
+            {
+              "key": "start",
+              "value": "2026-01-01"
+            },
+            {
+              "key": "end",
+              "value": "2026-01-31"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "C1 - Pharmacists by medicine class",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/pharmacists/by-medicine-class?name=antibiotics",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "pharmacists",
+            "by-medicine-class"
+          ],
+          "query": [
+            {
+              "key": "name",
+              "value": "antibiotics"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "C2 - Free store rooms",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/store-rooms/free",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "store-rooms",
+            "free"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "C3 - Unused medicine classes",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/medicine-classes/unused",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "medicine-classes",
+            "unused"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "C4 - Suppliers of pharmacist",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/suppliers/of-pharmacist/fcf81eef-5094-4046-bfde-0fa613395bcd",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "suppliers",
+            "of-pharmacist",
+            "fcf81eef-5094-4046-bfde-0fa613395bcd"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D1a - Save valid order",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"orderDate\": \"2026-12-01\",\r\n    \"orderReference\": \"PO-TEST-D1\",\r\n    \"totalAmount\": 5000,\r\n    \"supplier\": {\"id\": \"24f6234e-a094-4548-9d8a-d663b04fd146\"},\r\n    \"pharmacist\": {\"id\": \"84973f78-0c73-476f-8114-2ccd0942fddd\"},\r\n    \"status\": \"RECEIVED\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8085/api/purchase-orders/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "purchase-orders",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D1b - Date in past",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"orderDate\": \"2020-01-01\",\r\n    \"orderReference\": \"PO-TEST-D1B\",\r\n    \"totalAmount\": 5000,\r\n    \"supplier\": {\"id\": \"24f6234e-a094-4548-9d8a-d663b04fd146\"},\r\n    \"pharmacist\": {\"id\": \"84973f78-0c73-476f-8114-2ccd0942fddd\"}\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8085/api/purchase-orders/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "purchase-orders",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D1c - Duplicate date",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"orderDate\": \"2026-12-10\",\r\n    \"orderReference\": \"PO-TEST-CAROL\",\r\n    \"totalAmount\": 5000,\r\n    \"supplier\": {\"id\": \"24f6234e-a094-4548-9d8a-d663b04fd146\"},\r\n    \"pharmacist\": {\"id\": \"84973f78-0c73-476f-8114-2ccd0942fddd\"}\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8085/api/purchase-orders/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "purchase-orders",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D2a - Change DRAFTED to SENT",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/purchase-orders/6070202f-8f3d-4129-8774-be0cdadd1e35/status?status=SENT",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "purchase-orders",
+            "6070202f-8f3d-4129-8774-be0cdadd1e35",
+            "status"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "SENT"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D2b - Invalid change (DRAFTED to RECEIVED)",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/purchase-orders/8196b0a0-9773-4ef4-b82f-ba8b47348e1a/status?status=RECEIVED",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "purchase-orders",
+            "8196b0a0-9773-4ef4-b82f-ba8b47348e1a",
+            "status"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "RECEIVED"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D3a - Add Antibiotics to Bob",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/pharmacists/37a86686-a415-4688-81d4-3c8196111ee0/medicine-classes/1a4281ef-b80a-44b8-952b-bb2f9d2e3ae6",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "pharmacists",
+            "37a86686-a415-4688-81d4-3c8196111ee0",
+            "medicine-classes",
+            "1a4281ef-b80a-44b8-952b-bb2f9d2e3ae6"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D3b - Already has Antibiotics",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/pharmacists/37a86686-a415-4688-81d4-3c8196111ee0/medicine-classes/1a4281ef-b80a-44b8-952b-bb2f9d2e3ae6",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "pharmacists",
+            "37a86686-a415-4688-81d4-3c8196111ee0",
+            "medicine-classes",
+            "1a4281ef-b80a-44b8-952b-bb2f9d2e3ae6"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D4a - Move Bob to Room 4",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/pharmacists/37a86686-a415-4688-81d4-3c8196111ee0/store-room?roomNumber=4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "pharmacists",
+            "37a86686-a415-4688-81d4-3c8196111ee0",
+            "store-room"
+          ],
+          "query": [
+            {
+              "key": "roomNumber",
+              "value": "4"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D4b - Move Bob to Room 1 (taken)",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/pharmacists/37a86686-a415-4688-81d4-3c8196111ee0/store-room?roomNumber=1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "pharmacists",
+            "37a86686-a415-4688-81d4-3c8196111ee0",
+            "store-room"
+          ],
+          "query": [
+            {
+              "key": "roomNumber",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E1 — Write a stock entry",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"medicineName\": \"Amoxicillin 500mg\",\r\n    \"batchNote\": \"Batch AMX-21, expires 2027-05\",\r\n    \"quantity\": 200\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8085/api/stock-entries/save?purchaseOrderId=83c0684f-741f-495b-bbe4-d3d115e5a9ce",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "stock-entries",
+            "save"
+          ],
+          "query": [
+            {
+              "key": "purchaseOrderId",
+              "value": "83c0684f-741f-495b-bbe4-d3d115e5a9ce"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E1b - Write stock entry for non-received order",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"medicineName\": \"Amoxicillin 500mg\",\r\n    \"batchNote\": \"Batch AMX-21, expires 2027-05\",\r\n    \"quantity\": 200\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8085/api/stock-entries/save?purchaseOrderId=8196b0a0-9773-4ef4-b82f-ba8b47348e1a",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "stock-entries",
+            "save"
+          ],
+          "query": [
+            {
+              "key": "purchaseOrderId",
+              "value": "8196b0a0-9773-4ef4-b82f-ba8b47348e1a"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E1c - Write stock entry (not RECEIVED)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"medicineName\": \"Test\",\r\n    \"batchNote\": \"Test\",\r\n    \"quantity\": 10\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8085/api/stock-entries/save?purchaseOrderId=8196b0a0-9773-4ef4-b82f-ba8b47348e1a",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "stock-entries",
+            "save"
+          ],
+          "query": [
+            {
+              "key": "purchaseOrderId",
+              "value": "8196b0a0-9773-4ef4-b82f-ba8b47348e1a"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E2 - Stock entry history by supplier",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/stock-entries/supplier/SUP-0035",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "stock-entries",
+            "supplier",
+            "SUP-0035"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E3 - Protect purchase order from deletion",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/purchase-orders/6070202f-8f3d-4129-8774-be0cdadd1e35",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "purchase-orders",
+            "6070202f-8f3d-4129-8774-be0cdadd1e35"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E3b - Delete stock entry",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/stock-entries/delete/9f6a9e8c-698c-47a9-a02a-096c05fa87f9",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "stock-entries",
+            "delete",
+            "9f6a9e8c-698c-47a9-a02a-096c05fa87f9"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E3c - Delete stock entry (not found)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/stock-entries/delete/00000000-0000-0000-0000-000000000000",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "stock-entries",
+            "delete",
+            "00000000-0000-0000-0000-000000000000"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "F1 -Stats by status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/purchase-orders/stats/by-status",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "purchase-orders",
+            "stats",
+            "by-status"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "F2-Cancel day",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/purchase-orders/cancel-day?pharmacistId=1f58ff55-fb64-47e0-8650-a19bb29ef719&date=2026-10-20",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "purchase-orders",
+            "cancel-day"
+          ],
+          "query": [
+            {
+              "key": "pharmacistId",
+              "value": "1f58ff55-fb64-47e0-8650-a19bb29ef719"
+            },
+            {
+              "key": "date",
+              "value": "2026-10-20"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Bonus 1 - Dashboard Summary",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/dashboard/summary",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "dashboard",
+            "summary"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Bonus 2 - Page by Page",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8085/api/purchase-orders/page?page=0&size=5&sort=orderDate,desc",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8085",
+          "path": [
+            "api",
+            "purchase-orders",
+            "page"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "0"
+            },
+            {
+              "key": "size",
+              "value": "5"
+            },
+            {
+              "key": "sort",
+              "value": "orderDate,desc"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
