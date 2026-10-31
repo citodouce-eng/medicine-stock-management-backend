@@ -1,11 +1,13 @@
 package rw.medicine.stock.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import rw.medicine.stock.domain.OrderStatus;
 import rw.medicine.stock.domain.PurchaseOrder;
 import rw.medicine.stock.repository.PurchaseOrderRepository;
 import rw.medicine.stock.repository.StockEntryRepository;
+
 
 import java.time.LocalDate;
 import java.util.List;
@@ -50,7 +52,7 @@ public class PurchaseOrderService {
 
     public String delete(UUID id) {
         if (!purchaseOrderRepository.existsById(id)) {
-            return "The purchase oerder with that id does nor exist";
+            return "The purchase order with that id does not exist";
 
         }
         if (stockEntryRepository.existsByPurchaseOrderId(id)) {
@@ -91,6 +93,15 @@ public class PurchaseOrderService {
         po.setStatus(newStatus);
         purchaseOrderRepository.save(po);
         return "Purchase order status updated successfully";    
+    }
+    public List<Object[]> statsByStatus() {
+        return purchaseOrderRepository.countByStatus();
+    }
+
+    @Transactional 
+    public String cancelDay(UUID pharmacistId, LocalDate date) {
+        int count = purchaseOrderRepository.cancelDay(pharmacistId, date, OrderStatus.CANCELLED, OrderStatus.RECEIVED);
+        return count + " purchase orders cancelled";
     }
 
 }

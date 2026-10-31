@@ -91,5 +91,17 @@ public class PurchaseOrderController {
 
     }
 
+    @GetMapping("/stats/by-status")
+    public List<Object[]> statsByStatus() {
+        return purchaseOrderService.statsByStatus();
+    }
+
+    @PatchMapping("/cancel-day")
+    public String cancelDay(@RequestParam UUID pharmacistId, @RequestParam String date) {
+        LocalDate localDate = LocalDate.parse(date);
+        return purchaseOrderService.cancelDay(pharmacistId, localDate);
+
+    }
+
     
 }
