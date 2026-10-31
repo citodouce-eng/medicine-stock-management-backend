@@ -30,8 +30,11 @@ public interface PurchaseOrderRepository extends JpaRepository<PurchaseOrder, UU
            "WHERE p.pharmacist.id = :pharmacistId " +
            "AND p.orderDate = :date " +
            "AND p.status <> :receivedStatus")   
-           int cancelDay(@Param("pharmacistId") UUID pharmacistId, 
-           @Param("date") LocalDate date,
-           @Param("cancelledStatus") OrderStatus cancelledStatus,
-           @Param("receivedStatus") OrderStatus receivedStatus);
+     int cancelDay(@Param("pharmacistId") UUID pharmacistId, 
+                   @Param("date") LocalDate date,
+                   @Param("cancelledStatus") OrderStatus cancelledStatus,
+                   @Param("receivedStatus") OrderStatus receivedStatus);
+     long countByOrderDate(LocalDate orderDate);
+     long countByStatus(OrderStatus status);
+
 }

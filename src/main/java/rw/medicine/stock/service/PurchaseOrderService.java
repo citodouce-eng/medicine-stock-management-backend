@@ -104,4 +104,7 @@ public class PurchaseOrderService {
         return count + " purchase orders cancelled";
     }
 
+    public org.springframework.data.domain.Page<PurchaseOrder> getPage(org.springframework.data.domain.Pageable pageable) {
+        return purchaseOrderRepository.findAll(pageable);
+    }
 }

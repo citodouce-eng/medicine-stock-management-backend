@@ -103,5 +103,23 @@ public class PurchaseOrderController {
 
     }
 
+    @GetMapping("/page")
+    public org.springframework.data.domain.Page<PurchaseOrder> getPage(
+        @RequestParam int page,
+        @RequestParam int size,
+        @RequestParam  String sort) {
+
+       String[] sortParams = sort.split(",");
+       org.springframework.data.domain.Sort sortObj = org.springframework.data.domain.Sort.by(
+        org.springframework.data.domain.Sort.Direction.fromString(sortParams[1]), 
+        sortParams[0]);
+    
+        org.springframework.data.domain.Pageable pageable = org.springframework.data.domain.PageRequest.of(page, size, sortObj);
+
+        return purchaseOrderService.getPage(pageable);
+
+        }
+    
+
     
 }
